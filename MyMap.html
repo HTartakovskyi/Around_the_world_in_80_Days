@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+   <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" 
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+</head> 
+<body> 
+   <div id="map" class="map" style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; "></div>
+   <script type="text/javascript">
+      function sayHello() {
+         var img = new Image();
+         img.src = './Data/flag011.png';
+         img.onload = function(){location.reload()};
+      }
+      setInterval(sayHello, 1000);
+
+      var map = L.map('map').setView([0, 0],2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
+         var marker = L.marker([3.866667, 11.516667], {title:'Yaounde'}).addTo(map);
+         var marker = L.marker([9.083333, 7.533333], {title:'Abuja'}).addTo(map);
+         var marker = L.marker([13.516667, 2.116667], {title:'Niamey'}).addTo(map);
+         var marker = L.marker([14.733333, -17.633333], {title:'Dakar'}).addTo(map);
+         var marker = L.marker([13.450000, -16.566667], {title:'Banjul'}).addTo(map);
+         var marker = L.marker([13.100000, -59.616667], {title:'Bridgetown'}).addTo(map);
+         var LeafIcon = L.Icon.extend({options: {shadowUrl: 'Data/icons8.png',iconSize : [48, 48] ,shadowSize : [51, 37] ,iconAnchor : [16, 37] ,shadowAnchor : [16, 37] ,popupAnchor : [0, -30]}});
+         var LeafIcon = L.Icon.extend({options: {shadowUrl: 'Data/icons9.png',iconSize : [48, 48] ,shadowSize : [51, 37] ,iconAnchor : [16, 37] ,shadowAnchor : [16, 37] ,popupAnchor : [0, -30]}});
+         var coffeeIcon = new LeafIcon({ iconUrl: 'Data/icons8.png' });
+         var hintIcon = new LeafIcon({ iconUrl: 'Data/icons9.png' });
+         var marker = L.marker([27.153611, -13.203333], {icon: coffeeIcon, title:'El-Aaiún'}).addTo(map); 
+         var altlatlngs = [[3.866667, 11.516667],[9.083333, 7.533333],[13.516667, 2.116667],[14.733333, -17.633333],[13.450000, -16.566667],[13.100000, -59.616667]];
+         var altpolyline = L.polyline(altlatlngs, { color: 'blue', weight : 5, opacity : 0.7 }).addTo(map);
+         var altlatlngs2 = [[3.866667, 11.516667],[27.153611, -13.203333]];
+         var altpolyline2 = L.polyline(altlatlngs2, { color: 'yellow', weight : 5, opacity : 0.7 }).addTo(map);
+         map.fitBounds(altpolyline.getBounds());
+         map.setView([0, 0], 2);
+   </script>
+</body>
+</html>
